@@ -1,0 +1,31 @@
+---
+import { BEIAN_NUMBER, GONGAN_NUMBER } from "../config";
+
+
+---
+<footer class="footer">
+  <nav class="flex flex-col gap-1">
+    <p>
+      © 2025 - 2025 <a class="footercolor" target="_blank" href="https://github.com/onenine"><span>onenine</span></a>
+    </p>
+    <p>
+      Powered by
+      <a class="footercolor" target="_blank" href="https://astro.build/"><span>Astro</span></a>
+      Theme by
+      <a class="footercolor" target="_blank" href="https://github.com/onenine/ying-astro-theme"><span>Ying</span></a>
+    </p>
+    {BEIAN_NUMBER && 
+      <p>
+        <a class="footercolor" target="_blank" href="https://beian.miit.gov.cn/"><span>{BEIAN_NUMBER}</span></a>
+      </p>
+    }
+    {GONGAN_NUMBER && 
+      <p>
+        <a class="footercolor flex items-center justify-end gap-1" target="_blank" href="https://beian.mps.gov.cn/#/query/webSearch">
+          <img class="h-3 w-3" src="/img/beian.png" alt="公安备案">
+          <span>{GONGAN_NUMBER}</span>
+        </a>
+      </p>
+    }
+  </nav>
+</footer>

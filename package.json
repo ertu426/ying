@@ -9,6 +9,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.4"
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/rss": "^4.0.14",
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^5.16.6",
+    "remixicon": "^4.7.0",
+    "ultrahtml": "^1.6.0"
+  },
+  "devDependencies": {
+    "@unocss/reset": "^66.5.10",
+    "unocss": "^66.5.10"
   }
 }
