@@ -2,9 +2,43 @@
 ---
 
 <li id="theme-toggle">
-  <i class="ri-sun-line"></i>
-  <i class="ri-moon-line"></i>
+  <i id="theme-icon" class="ri-moon-line"></i>
 </li>
+
+<script lang="ts">
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+  const savedTheme = localStorage.getItem('theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  let currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      themeIcon.className = 'ri-sun-line';
+    } else {
+      document.documentElement.classList.remove('dark');
+      themeIcon.className = 'ri-moon-line';
+    }
+    localStorage.setItem('theme', theme);
+    currentTheme = theme;
+  }
+
+  applyTheme(currentTheme);
+
+  themeToggle.addEventListener('click', () => {
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!savedTheme) {
+      const newTheme = e.matches ? 'dark' : 'light';
+      applyTheme(newTheme);
+    }
+  });
+</script>
 
 <style>
   #theme-toggle {
@@ -13,29 +47,4 @@
     align-items: center;
     font-size: 1.2rem;
   }
-
-  #theme-toggle .ri-moon-line {
-    display: block;
-  }
-  #theme-toggle .ri-sun-line {
-    display: none;
-  }
-
-  html.dark #theme-toggle .ri-sun-line {
-    display: block;
-  }
-  html.dark #theme-toggle .ri-moon-line {
-    display: none;
-  }
 </style>
-
-<script>
-  const themeToggle = document.getElementById('theme-toggle');
-
-  themeToggle?.addEventListener('click', () => {
-    document.documentElement.classList.toggle('dark');
-    
-    const isDark = document.documentElement.classList.contains('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  });
-</script>
