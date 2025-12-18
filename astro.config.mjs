@@ -6,12 +6,22 @@ import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'http://localhost:4321',
-    integrations: [
-        mdx(), 
-        sitemap(),
-        UnoCSS({
-            injectReset: true
-        }),
-    ],
+  site: 'http://localhost:4321',
+  integrations: [
+    mdx(),
+    sitemap(),
+    UnoCSS({
+      injectReset: true
+    }),
+  ],
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+      defaultColor: false,
+      wrap: true,
+    },
+  },
 });

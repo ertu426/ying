@@ -13,6 +13,9 @@ const blog = defineCollection({
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
 			heroImage: image().optional(),
+			author: z.string().default('伊玖OneNine'),
+			categories: z.array(z.string()).default(['默认分类']),
+			views: z.number().default(0),
 		}),
 });
 

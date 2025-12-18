@@ -1,6 +1,10 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
-import BlogPost from '../../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { getRelativeTimeString } from '../../utils/dateUtils';
+
+type Props = CollectionEntry<'blog'>;
 
 export async function getStaticPaths() {
         const posts = await getCollection('blog');
@@ -9,12 +13,35 @@ export async function getStaticPaths() {
                 props: post,
         }));
 }
-type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPost {...post.data}>
-        <Content />
-</BlogPost>
+
+
+<Layout title={post.data.title} description={post.data.description}>
+    <article class="post-content"> 
+        <h1>{post.data.title}</h1>
+        <div class="meta text-xs my-2 text-gray-400">
+            <span>
+                <FormattedDate date={post.data.pubDate} />
+            </span>
+            {
+                post.data.updatedDate && 
+                <span>/</span>
+                <span class="last-updated-on">
+                    上次更新: {getRelativeTimeString(post.data.updatedDate)}
+                </span>
+            }
+            <span>/ {post.data.author} / {post.data.views}阅读</span>
+            <span>
+                / 分类: <a href={`/categories/${post.data.categories?.join(', ')}`} class="hover:underline text-black dark:text-gray-300">{post.data.categories?.join(', ') || '默认分类'}</a>
+            </span>
+        </div>
+
+        <div>
+            <Content />
+        </div>
+    </article>
+</Layout>
