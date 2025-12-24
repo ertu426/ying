@@ -1,0 +1,14 @@
+pre code.hljs { display: block; overflow-x: auto; padding: 1em; }
+code.hljs { padding: 3px 5px; }
+.hljs {color: rgb(171, 178, 191);background: rgb(40, 44, 52);}
+.hljs-comment, .hljs-quote { color: rgb(92, 99, 112); font-style: italic; }
+.hljs-doctag, .hljs-formula, .hljs-keyword { color: rgb(198, 120, 221); }
+.hljs-deletion, .hljs-name, .hljs-section, .hljs-selector-tag, .hljs-subst { color: rgb(224, 108, 117); }
+.hljs-literal { color: rgb(86, 182, 194); }
+.hljs-addition, .hljs-attribute, .hljs-meta .hljs-string, .hljs-regexp, .hljs-string { color: rgb(152, 195, 121); }
+.hljs-attr, .hljs-number, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-pseudo, .hljs-template-variable, .hljs-type, .hljs-variable { color: rgb(209, 154, 102); }
+.hljs-bullet, .hljs-link, .hljs-meta, .hljs-selector-id, .hljs-symbol, .hljs-title { color: rgb(97, 174, 238); }
+.hljs-built_in, .hljs-class .hljs-title, .hljs-title.class_ { color: rgb(230, 192, 123); }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 700; }
+.hljs-link { text-decoration: underline; }
