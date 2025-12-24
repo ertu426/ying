@@ -1,15 +1,32 @@
 ---
-import type { GetStaticPaths, Page } from "astro";
-import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-import FormattedDate from '../components/FormattedDate.astro';
+import { Image } from 'astro:assets'
+import { getCollection } from 'astro:content'
+import type { GetStaticPaths, Page } from 'astro'
+import Layout from '../layouts/Layout.astro'
+import FormattedDate from '../components/FormattedDate.astro'
 
-export const getStaticPaths: GetStaticPaths = async ({paginate}) => {
-  const posts = await getCollection('blog');
-  return paginate(posts, { pageSize: 10 });
-};
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const posts = await getCollection('blog')
+  return paginate(posts, { pageSize: 10 })
+}
 
-const { page } = Astro.props as { page: Page<{ data: { pubDate: Date; title: string; }; id: string; }> };
+interface Post {
+  data: {
+    title: string
+    description: string
+    // Transform string to Date object
+    pubDate: Date
+    updatedDate: Date | undefined
+    heroImage: ImageMetadata
+    author: string
+    categories: string
+    tags: string[]
+    views: number
+  }
+  id: string
+}
+
+const { page } = Astro.props as { page: Page<Post> }
 ---
 
 <Layout title="首页" description="首页 Ying Astro Blog">
@@ -18,14 +35,22 @@ const { page } = Astro.props as { page: Page<{ data: { pubDate: Date; title: str
 
     <section>
       {
-        page.data.map((post) => (
-          <article class="article-card"> 
+        page.data.map(post => (
+          <article class="article-card">
             <div class="article-img-box">
-              <img src="/img/author.jpg" class="article-img" sizes="(max-width: 1600px) 100vw, 1600px" />
+              <Image
+                src={post.data.heroImage}
+                alt={post.data.title}
+                sizes="(max-width: 1600px) 100vw, 1600px"
+                layout='constrained'
+                inferSize
+              />
             </div>
             <div class="article-box">
               <FormattedDate date={post.data.pubDate} />
-              <a href={`/blog/${post.id}`} class="hover:underline">{post.data.title}</a>
+              <a href={`/archives/${post.id}`} class="hover:underline">
+                {post.data.title}
+              </a>
             </div>
           </article>
         ))
@@ -34,7 +59,13 @@ const { page } = Astro.props as { page: Page<{ data: { pubDate: Date; title: str
 
     <nav class="flex justify-between pt-2">
       {page.url.prev && <a href={page.url.prev}>上一页</a>}
-      {page.lastPage > 1 && <span class="text-zinc-400">第 {page.currentPage} 页 / 共 {page.lastPage} 页</span>}
+      {
+        page.lastPage > 1 && (
+          <span class="text-zinc-400">
+            第 {page.currentPage} 页 / 共 {page.lastPage} 页
+          </span>
+        )
+      }
       {page.url.next && <a href={page.url.next}>下一页</a>}
     </nav>
   </article>

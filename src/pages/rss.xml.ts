@@ -23,7 +23,7 @@ export async function GET(context: APIContext) {
   // Load the content collection entries to add to our RSS feed.
   const posts = (await getCollection("blog")).sort((a, b) =>
     // Sort by publication date descending.
-    a.data.pubDate > b.data.pubDate ? -1 : 1
+    a.data.pubDate > b.data.pubDate ? -1 : 1,
   );
 
   // Loop over blog posts to create feed items for each, including full content.
@@ -38,21 +38,24 @@ export async function GET(context: APIContext) {
     // - Makes link `href` and image `src` attributes absolute instead of relative
     // - Strips any `<script>` and `<style>` tags
     // Thanks @Princesseuh — https://github.com/Princesseuh/erika.florist/blob/1827288c14681490fa301400bfd815acb53463e9/src/middleware.ts
-    const content = await transform(rawContent.replace(/^<!DOCTYPE html>/, ""), [
-      async (node) => {
-        await walk(node, (node) => {
-          if (node.name === "a" && node.attributes.href?.startsWith("/")) {
-            node.attributes.href = baseUrl + node.attributes.href;
-          }
-          if (node.name === "img" && node.attributes.src?.startsWith("/")) {
-            node.attributes.src = baseUrl + node.attributes.src;
-          }
-        });
-        return node;
-      },
-      sanitize({ dropElements: ["script", "style"] }),
-    ]);
-    feedItems.push({ ...post.data, link: `/blog/${post.id}/`, content });
+    const content = await transform(
+      rawContent.replace(/^<!DOCTYPE html>/, ""),
+      [
+        async (node) => {
+          await walk(node, (node) => {
+            if (node.name === "a" && node.attributes.href?.startsWith("/")) {
+              node.attributes.href = baseUrl + node.attributes.href;
+            }
+            if (node.name === "img" && node.attributes.src?.startsWith("/")) {
+              node.attributes.src = baseUrl + node.attributes.src;
+            }
+          });
+          return node;
+        },
+        sanitize({ dropElements: ["script", "style"] }),
+      ],
+    );
+    feedItems.push({ ...post.data, link: `/archives/${post.id}/`, content });
   }
 
   // Return our RSS feed XML response.

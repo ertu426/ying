@@ -1,22 +1,23 @@
 @font-face {
-    font-family: 'HarmonyOS';
-    src: url('/fonts/HarmonyOS/HarmonyOS_Sans_SC_Medium.woff') format('woff');
+  font-family: "HarmonyOS";
+  src: url("/fonts/HarmonyOS/HarmonyOS_Sans_SC_Medium.woff") format("woff");
 }
 
 @font-face {
-    font-family: 'ZouLDFXKAJ';
-    src: url('/fonts/ZouLDFXKAJ/ZouLDFXKAJ.eot?#iefix') format('embedded-opentype'),
-         url('/fonts/ZouLDFXKAJ/ZouLDFXKAJ.woff2') format('woff2'),
-         url('/fonts/ZouLDFXKAJ/ZouLDFXKAJ.woff') format('woff'),
-         url('/fonts/ZouLDFXKAJ/ZouLDFXKAJ.ttf') format('truetype');
+  font-family: "ZouLDFXKAJ";
+  src:
+    url("/fonts/ZouLDFXKAJ/ZouLDFXKAJ.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/ZouLDFXKAJ/ZouLDFXKAJ.woff2") format("woff2"),
+    url("/fonts/ZouLDFXKAJ/ZouLDFXKAJ.woff") format("woff"),
+    url("/fonts/ZouLDFXKAJ/ZouLDFXKAJ.ttf") format("truetype");
 }
 
 .page-container {
-    background-image: url(/img/texture.png);
-    background-repeat: repeat;
-    font-family:'ZouLDFXKAJ', 'HarmonyOS', sans-serif
+  background-image: url(/img/texture.png);
+  background-repeat: repeat;
+  font-family: "ZouLDFXKAJ", "HarmonyOS", sans-serif;
 }
 
 .post-card {
-    animation: post-in .2s var(--delay) backwards;
+  animation: post-in 0.2s var(--delay) backwards;
 }

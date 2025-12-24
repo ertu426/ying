@@ -1,21 +1,20 @@
 ---
+import BaseHead from '../components/BaseHead.astro'
+import Footer from '../components/Footer.astro'
 // 引入组件、样式、工具函数
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import BaseHead from "../components/BaseHead.astro";
+import Header from '../components/Header.astro'
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts'
 import 'remixicon/fonts/remixicon.css'
-import "../styles/global.css";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import '../styles/global.css'
 
 // 通过 frontmatter 传递页面标题、描述等
 export interface Props {
-  title?: string;
-  description?: string;
-  image?: string;
-  highlighting?: boolean;
+  title?: string
+  description?: string
+  image?: string
 }
 
-const { title, description, highlighting = false } = Astro.props;
+const { title, description } = Astro.props
 const pageTitle = title ? `${title} - ${SITE_TITLE}` : SITE_TITLE;
 ---
 
