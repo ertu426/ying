@@ -55,7 +55,7 @@ export async function GET(context: APIContext) {
         sanitize({ dropElements: ["script", "style"] }),
       ],
     );
-    feedItems.push({ ...post.data, link: `/blog/${post.id}/`, content });
+    feedItems.push({ ...post.data, link: `/archives/${post.id}/`, content });
   }
 
   // Return our RSS feed XML response.

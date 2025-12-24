@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+
+const posts = await getCollection('blog');
+// 收集所有 categorie 并统计出现次数
+const categorieMap = new Map<string, number>();
+
+posts.forEach(p => {
+  const categorie = p.data.categorie;
+    categorieMap.set(categorie, (categorieMap.get(categorie) ?? 0) + 1);
+});
+
+const categories = Array.from(categorieMap.entries())
+  .map(([categorie, count]) => ({ categorie, count }))
+  .sort((a, b) => b.count - a.count || a.categorie.localeCompare(b.categorie));
+---
+
+<Layout title="分类">
+  <article class="categorie-content">
+    <h2 class="item-a">分类</h2>
+    <ul class="mt-5">
+      {
+        categories.map(categorie => (
+          <li>
+            <a href={`/categories/${categorie.categorie}`} class="text-sky-400 dark:text-sky-500 hover:underline">{`${categorie.categorie} (${categorie.count})`}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </article>
+</Layout>
+
+<style is:global>
+:root {
+  --ac-li-bg: #343a401a;
+  --ac-li-tx: #324b64;
+}
+
+:root.dark {
+  --ac-li-bg: #202328;
+  --ac-li-tx: #e0e0e1;
+}
+
+.item-a {
+    font-size: 22px;
+    position: relative;
+}
+
+.item-a::before {
+    position: absolute;
+    content: "#";
+    left: -1rem;
+    color: #2bbc8a;
+    font-weight: 700
+}
+</style>

@@ -1,6 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import type { GetStaticPaths } from 'astro';
 import Layout from "../../layouts/Layout.astro";
 
 
@@ -58,15 +57,5 @@ const tags = Array.from(tagMap.entries())
     left: -1rem;
     color: #2bbc8a;
     font-weight: 700
-}
-
-.archives-li {
-    padding: 3px 5px;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1;
-    background-color: var(--ac-li-bg);
-    color: var(--ac-li-tx);
-    margin-right: 5px;
 }
 </style>

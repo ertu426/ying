@@ -6,30 +6,30 @@ import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  const tagsSet = new Set();
+  const categoriesSet = new Set();
   posts.forEach(p => {
-    const t = p.data.tags ?? [];
-    t.forEach(tag => tagsSet.add(String(tag)));
+    const t = p.data.categorie;
+    categoriesSet.add(String(t));
   });
 
-  const paths = Array.from(tagsSet).map(tag => ({
-    params: { tag },
+  const paths = Array.from(categoriesSet).map(categorie => ({
+    params: { categorie },
   }));
 
   return paths;
 }
 
-const { tag } = Astro.params as { tag: string };
+const { categorie } = Astro.params as { categorie: string };
 
 const allPosts = await getCollection('blog');
 const posts = allPosts
-  .filter(p => (p.data.tags ?? []).includes(tag))
+  .filter(p => (p.data.tags ?? []).includes(categorie))
   .sort((a, b) => +new Date(b.data.pubDate ?? 0) - +new Date(a.data.pubDate ?? 0));
 ---
 
-<Layout title={`标签: ${tag}`}>
+<Layout title={`分类: ${categorie}`}>
   <article class="tag-content">
-    <h2 class="item-a">标签: {tag}</h2>
+    <h2 class="item-a">分类: {categorie}</h2>
     <p class="my-5">
       共有 {posts.length} 篇文章
     </p>
