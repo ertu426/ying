@@ -27,7 +27,10 @@
     "ultrahtml": "^1.6.0"
   },
   "devDependencies": {
+    "@typescript-eslint/parser": "^8.50.1",
     "@unocss/reset": "^66.5.10",
+    "prettier": "3.7.4",
+    "prettier-plugin-astro": "0.14.1",
     "unocss": "^66.5.10"
   }
 }

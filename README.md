@@ -7,7 +7,6 @@ A modern, fast, and responsive blog built with Astro framework.
 
 ENGLISH | [简体中文](README_zh.md)
 
-
 ## ✨ Features
 
 - 🚀 **Fast Performance**: Built with Astro's static site generation for optimal speed
@@ -70,16 +69,16 @@ pnpm dev
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`            | Installs dependencies                            |
-| `pnpm dev`                | Starts local dev server at `localhost:4321`      |
-| `pnpm build`              | Build your production site to `./dist/`          |
-| `pnpm preview`            | Preview your build locally, before deploying     |
-| `pnpm astro ...`          | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help`    | Get help using the Astro CLI                     |
+| Command                | Action                                           |
+| :--------------------- | :----------------------------------------------- |
+| `pnpm install`         | Installs dependencies                            |
+| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
+| `pnpm build`           | Build your production site to `./dist/`          |
+| `pnpm preview`         | Preview your build locally, before deploying     |
+| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `pnpm astro -- --help` | Get help using the Astro CLI                     |
 
-## �️ Built With
+## 🛠️ Built With
 
 - [Astro](https://astro.build/) - Static site generator
 - [UnoCSS](https://unocss.dev/) - Utility-first CSS framework
@@ -115,6 +114,7 @@ The theme uses UnoCSS for styling. You can customize the theme by modifying the 
 ### Configuration
 
 Project configuration can be found in:
+
 - `astro.config.mjs` - Astro framework configuration
 - `tsconfig.json` - TypeScript configuration
 - `uno.config.ts` - UnoCSS configuration
