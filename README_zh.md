@@ -1,6 +1,6 @@
 # Ying - 基于 Astro 的现代博客
 
-一个使用 Astro 框架构建的现代化、高性能、响应式博客。
+一个使用 Astro 框架构建的现代化、高性能、响应式博客。移植于[Halo](https://halo.run/)主题[Ying](https://github.com/MagicBreeze/halo-theme-Ying)。
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 [![License](https://img.shields.io/github/license/ertu426/ying-astro-theme.svg?style=flat-square)](https://github.com/ertu426/ying-astro-theme/blob/main/LICENSE)

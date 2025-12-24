@@ -1,6 +1,6 @@
 # Ying - Modern Blog with Astro
 
-A modern, fast, and responsive blog built with Astro framework.
+A modern, fast, and responsive blog built with Astro framework. Ported from the [Halo](https://halo.run/) theme [Ying](https://github.com/MagicBreeze/halo-theme-Ying).
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 [![License](https://img.shields.io/github/license/ertu426/ying-astro-theme.svg?style=flat-square)](https://github.com/ertu426/ying-astro-theme/blob/main/LICENSE)
