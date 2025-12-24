@@ -28,10 +28,7 @@ const posts = allPosts
   .sort((a, b) => +new Date(b.data.pubDate ?? 0) - +new Date(a.data.pubDate ?? 0));
 ---
 
-<Layout
-  title="标签"
-  description="标签"
->
+<Layout title={`标签: ${tag}`}>
   <article class="tag-content">
     <h2 class="item-a">标签: {tag}</h2>
     <p class="my-5">
