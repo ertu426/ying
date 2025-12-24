@@ -17,6 +17,7 @@ const blog = defineCollection({
       categories: z.string().default('默认分类'),
       tags: z.array(z.string()).default([]),
       views: z.number().default(0),
+      reprint: z.string().default(''),
     }),
 })
 

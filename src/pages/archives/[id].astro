@@ -5,16 +5,18 @@ import FormattedDate from '../../components/FormattedDate.astro'
 import Layout from '../../layouts/Layout.astro'
 import { getRelativeTimeString } from '../../utils/dateUtils'
 
+
 type Props = CollectionEntry<'blog'>
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
   return posts.map(post => ({
-    params: { slug: post.id },
+    params: { id: post.id },
     props: post,
   }))
 }
 
+const currentUrl = Astro.url.href
 const post = Astro.props
 const { Content } = await render(post);
 ---
@@ -53,7 +55,32 @@ const { Content } = await render(post);
     <div>
       <Content />
     </div>
+
+    <p></p>
+
+    {
+      post.data.tags.map(tag => (
+        <a
+          href={`/tags/${tag}`}
+          title={tag}
+          class="!text-sky-400 bg-sky-100 rounded-sm p-0.5 mr-2 hover:underline dark:bg-sky-900 dark:!text-sky-500"
+        >
+          #{tag}
+        </a>
+      ))
+    }
   </article>
+
+  <!-- 如果文章有原创标签，就显示原创标签 -->
+    {
+      !post.data.reprint && (
+        <div class="post-copyright my-5 p-3 bg-gray-100 dark:bg-gray-800 border-l-4 border-solid border-sky-500">
+            <p>文章作者：<span>{post.data.author}</span></p>
+            <p>文章链接：<a class="text-sky-400" href={currentUrl} data-pjax-state="">{currentUrl}</a></p>
+            <p>版权声明：本博客所有文章除特别声明外，均采用<a class="text-sky-400" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" data-pjax-state="">CC BY-NC-SA 4.0 许可协议</a>，转载请注明出处！</p>                
+        </div>
+      )
+    }
 </Layout>
 
 <style is:global>
