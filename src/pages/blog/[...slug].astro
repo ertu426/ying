@@ -1,0 +1,237 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { getRelativeTimeString } from '../../utils/dateUtils';
+
+type Props = CollectionEntry<'blog'>;
+
+export async function getStaticPaths() {
+        const posts = await getCollection('blog');
+        return posts.map((post) => ({
+                params: { slug: post.id },
+                props: post,
+        }));
+}
+
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+
+
+<Layout title={post.data.title} description={post.data.description} highlighting={true}>
+    <article class="post-content"> 
+        <h1>{post.data.title}</h1>
+        <div class="meta text-xs my-2 text-gray-400">
+            <span>
+                <FormattedDate date={post.data.pubDate} />
+            </span>
+            {
+                post.data.updatedDate && 
+                <span>/</span>
+                <span class="last-updated-on">
+                    上次更新: {getRelativeTimeString(post.data.updatedDate)}
+                </span>
+            }
+            <span>/ {post.data.author} / {post.data.views}阅读</span>
+            <span>
+                / 分类: <a href={`/categories/${post.data.categories?.join(', ')}`} class="hover:underline text-black dark:text-gray-300">{post.data.categories?.join(', ') || '默认分类'}</a>
+            </span>
+        </div>
+
+        <div>
+            <Content />
+        </div>
+    </article>
+</Layout>
+
+<style is:global>
+:root {
+  --blockquote-bg: #f5f5f5;
+  --blockquote-tx: #000;
+  --th-line: #dfe2e5;
+  --hr-line: #f6f3f4;
+  --ac-li-bg: #343a401a;
+  --ac-li-tx: #324b64;
+  --tag-bg: #dff2fe;
+  --tag-tx: #00bcff;
+}
+
+:root.dark {
+--blockquote-bg: #282c34;
+--blockquote-tx: white;
+--th-line: #424242;
+--hr-line: color-mix(in oklab, #d1d5dc 50%, transparent);
+--ac-li-bg: #202328;
+--ac-li-tx: #e0e0e1;
+--tag-bg: #024a71;
+--tag-tx: #00a6f4;
+}
+
+.post-content h1 {
+  font-size: 1.5rem
+}
+
+.post-content h1,
+.post-content h2 {
+  font-weight: unset
+}
+
+.post-content h2 {
+  font-size: 1.375rem
+}
+
+.post-content h3 {
+  font-size: 1.25rem
+}
+
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  font-weight: unset
+}
+
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+    font-size: 1.125rem
+}
+
+.post-content blockquote {
+  background-color: var(--blockquote-bg);
+  border-radius: 4px;
+  color: var(--blockquote-tx);
+  border-left: 0 solid #ccc;
+  margin: 1rem 0;
+  padding: .7em;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+  transition: all .15s ease-out
+}
+
+.post-content blockquote p {
+  margin: 0 !important;
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 400;
+  color: inherit;
+  padding: 0 15px;
+  line-height: normal;
+  text-align: inherit;
+  display: inline-block
+}
+
+.post-content blockquote:before {
+  color: #2bbc8a;
+  content: "\201C";
+  font-size: 2em;
+  line-height: .1em;
+  vertical-align: -.4em
+}
+
+blockquote:hover {
+  transform: scale(1.03)
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  position: relative;
+  text-transform: none;
+  letter-spacing: normal;
+  display: block;
+  margin: 10px 0
+}
+
+.post-content h2:before {
+  content: "#";
+  color: #2bbc8a;
+  position: absolute;
+  left: -1rem;
+  font-size: 1.2rem;
+  font-weight: 700
+}
+
+.post-content h3:before,
+.post-content h4:before,
+.post-content h5:before,
+.post-content h6:before {
+  content: "#";
+  color: #2bbc8a;
+  position: absolute;
+  left: -1rem;
+  font-weight: 500
+}
+
+.post-content p {
+  margin: 16px 0;
+}
+
+.post-content ul li {
+  margin: 0;
+  padding: 0;
+  list-style: disc;
+  margin-left: 20px;
+}
+
+.post-content ol li {
+  margin: 0;
+  padding: 0;
+  list-style: decimal;
+  margin-left: 20px;
+}
+
+.post-content a {
+  color: #2196f3;
+}
+
+.post-content code,
+.post-content pre {
+  font-weight: 400;
+  font-display: swap;
+  font-family: 'ZouLDFXKAJ';
+}
+
+.post-content hr {
+    margin: 1rem 0;
+    border-top: .1em dashed;
+}
+
+.post-content .task-list-item {
+  margin-left: 0;
+  list-style-type: none;
+}
+
+.post-content ol li code,
+.post-content p code,
+.post-content table code,
+.post-content ul li code {
+    background: var(--tag-bg);
+    color: #2196f3;
+    padding: .0rem .3rem;
+    border-radius: 4px;
+    white-space: break-spaces;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    word-break: break-all;
+    width: 100%
+}
+
+table th {
+    background-color: var(--blockquote-bg)
+}
+
+table td,
+table th {
+    padding: 10px 20px;
+    border: 1px solid var(--th-line);
+    text-align: center
+}
+</style>

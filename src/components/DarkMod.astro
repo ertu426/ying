@@ -1,0 +1,50 @@
+---
+---
+
+<li id="theme-toggle">
+  <i id="theme-icon" class="ri-moon-line"></i>
+</li>
+
+<script lang="ts">
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+  const savedTheme = localStorage.getItem('theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  let currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      themeIcon.className = 'ri-sun-line';
+    } else {
+      document.documentElement.classList.remove('dark');
+      themeIcon.className = 'ri-moon-line';
+    }
+    localStorage.setItem('theme', theme);
+    currentTheme = theme;
+  }
+
+  applyTheme(currentTheme);
+
+  themeToggle.addEventListener('click', () => {
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!savedTheme) {
+      const newTheme = e.matches ? 'dark' : 'light';
+      applyTheme(newTheme);
+    }
+  });
+</script>
+
+<style>
+  #theme-toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+  }
+</style>

@@ -1,0 +1,55 @@
+---
+import { SITE_TITLE, HITOKOTO_ENABLLE, HITOKOTO_TEXT } from '../consts';
+import DarkMod from './DarkMod.astro';
+
+let hitokoto = HITOKOTO_TEXT;
+if (HITOKOTO_ENABLLE) {
+  const response = await fetch('https://v1.hitokoto.cn/?c=i&encode=text&charset=utf-8&max_length=20') ;
+  hitokoto = await response.text();
+}
+---
+
+<div>
+  <img src="/img/author.jpg" class="rounded-lg" width="80" height="80" alt={SITE_TITLE} />
+  <div class="flex justify-between my-4 items-center">
+    <h2 class="!text-sm"><span class="hitokoto">{hitokoto}</span></h2>
+    <nav>
+      <ul class="flex space-x-2">
+        <a href="mailto:one@2xat.net" title="E-mail" target="_blank">
+          <i class="ri-mail-line"></i>
+        </a>
+        <a href="https://github.com/ertu426" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+        <a href="https://space.bilibili.com/4532843" target="_blank">
+          <i class="ri-bilibili-line"></i>
+        </a>
+        <a href={new URL('rss.xml', Astro.site)} title="rss" target="_blank">
+          <i class="ri-rss-line"></i>
+        </a>
+      </ul>
+    </nav>
+  </div>
+
+  <hr class="line" />
+
+
+  <nav class="navh">
+    <ul class="main-menu">
+      <li><a href="/">首页</a></li>
+      <li><a href="/download">下载</a></li>
+      <li><a href="/archives">归档</a></li>
+      <li><a href="/categories">分类</a></li>
+      <li><a href="/tags">标签</a></li>
+      <li><a href="/photos">相册</a></li>
+      <li><a href="/links">友链</a></li>
+      <li><a href="/moments">动态</a></li>
+      <li><a href="/item">好物</a></li>
+      <li><a href="/about">关于</a></li>
+    </ul>
+
+    <ul class="other-icons">
+      <DarkMod />
+    </ul>
+  </nav>
+</div>
