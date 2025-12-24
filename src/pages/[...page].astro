@@ -1,33 +1,31 @@
 ---
-import type { GetStaticPaths, Page } from "astro";
-import Layout from "../layouts/Layout.astro";
-import { getCollection } from "astro:content";
-import FormattedDate from "../components/FormattedDate.astro";
+import type { GetStaticPaths, Page } from 'astro'
+import { getCollection } from 'astro:content'
+import FormattedDate from '../components/FormattedDate.astro'
+import Layout from '../layouts/Layout.astro'
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
-  const posts = await getCollection("blog");
-  return paginate(posts, { pageSize: 10 });
-};
+  const posts = await getCollection('blog')
+  return paginate(posts, { pageSize: 10 })
+}
 
 interface Post {
   data: {
-    title: string;
-    description: string;
+    title: string
+    description: string
     // Transform string to Date object
-    pubDate: Date;
-    updatedDate: Date | undefined;
-    heroImage: string | undefined;
-    author: string;
-    categories: string;
-    tags: string[];
-    views: number;
-  };
-  id: string;
+    pubDate: Date
+    updatedDate: Date | undefined
+    heroImage: string | undefined
+    author: string
+    categories: string
+    tags: string[]
+    views: number
+  }
+  id: string
 }
 
-const { page } = Astro.props as { page: Page<Post> };
-
-console.log(page.data);
+const { page } = Astro.props as { page: Page<Post> }
 ---
 
 <Layout title="首页" description="首页 Ying Astro Blog">
@@ -36,7 +34,7 @@ console.log(page.data);
 
     <section>
       {
-        page.data.map((post) => (
+        page.data.map(post => (
           <article class="article-card">
             <div class="article-img-box">
               <img

@@ -1,20 +1,20 @@
 // @ts-check
-import mdx from "@astrojs/mdx";
-import sitemap from "@astrojs/sitemap";
-import UnoCSS from "unocss/astro";
-import { defineConfig } from "astro/config";
-import remarkGfm from "remark-gfm";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeHighlight from "rehype-highlight";
-import rehypeRaw from "rehype-raw";
-import rehypeFormat from "rehype-format";
-import rehypeSanitize from "rehype-sanitize";
-import remarkBreaks from "remark-breaks";
+import mdx from '@astrojs/mdx'
+import sitemap from '@astrojs/sitemap'
+import { defineConfig } from 'astro/config'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeFormat from 'rehype-format'
+import rehypeHighlight from 'rehype-highlight'
+import rehypeRaw from 'rehype-raw'
+import rehypeSanitize from 'rehype-sanitize'
+import rehypeSlug from 'rehype-slug'
+import remarkBreaks from 'remark-breaks'
+import remarkGfm from 'remark-gfm'
+import UnoCSS from 'unocss/astro'
 
 // https://astro.build/config
 export default defineConfig({
-  site: "http://localhost:4321",
+  site: 'http://localhost:4321',
   integrations: [
     mdx(),
     sitemap(),
@@ -32,6 +32,6 @@ export default defineConfig({
       rehypeHighlight,
       rehypeAutolinkHeadings,
     ],
-    syntaxHighlight: "prism",
+    syntaxHighlight: 'prism',
   },
-});
+})

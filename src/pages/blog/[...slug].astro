@@ -1,38 +1,38 @@
 ---
-import { type CollectionEntry, getCollection, render } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
-import FormattedDate from "../../components/FormattedDate.astro";
-import { getRelativeTimeString } from "../../utils/dateUtils";
+import type { CollectionEntry } from 'astro:content'
+import { getCollection, render } from 'astro:content'
+import FormattedDate from '../../components/FormattedDate.astro'
+import Layout from '../../layouts/Layout.astro'
+import { getRelativeTimeString } from '../../utils/dateUtils'
 
-type Props = CollectionEntry<"blog">;
+type Props = CollectionEntry<'blog'>
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
-  return posts.map((post) => ({
+  const posts = await getCollection('blog')
+  return posts.map(post => ({
     params: { slug: post.id },
     props: post,
-  }));
+  }))
 }
 
-const post = Astro.props;
+const post = Astro.props
 const { Content } = await render(post);
 ---
 
 <Layout
   title={post.data.title}
   description={post.data.description}
-  highlighting={true}
 >
   <article class="post-content">
     <h1>{post.data.title}</h1>
-    <div class="meta text-xs my-2 text-gray-400">
+    <div class="meta my-2 text-xs text-gray-400">
       <span>
         <FormattedDate date={post.data.pubDate} />
       </span>
       {
         post.data.updatedDate && (
           <>
-            {" "}
+            {' '}
             /
             <span class="last-updated-on">
               上次更新: {getRelativeTimeString(post.data.updatedDate)}
@@ -44,8 +44,8 @@ const { Content } = await render(post);
       <span>
         / 分类: <a
           href={`/categories/${post.data.categories}`}
-          class="hover:underline text-black dark:text-gray-300"
-          >{post.data.categories || "默认分类"}</a
+          class="text-black dark:text-gray-300 hover:underline"
+              >{post.data.categories || '默认分类'}</a
         >
       </span>
     </div>

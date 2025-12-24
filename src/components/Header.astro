@@ -1,13 +1,13 @@
 ---
-import { SITE_TITLE, HITOKOTO_ENABLLE, HITOKOTO_TEXT } from "../consts";
-import DarkMod from "./DarkMod.astro";
+import { HITOKOTO_ENABLLE, HITOKOTO_TEXT, SITE_TITLE } from '../consts'
+import DarkMod from './DarkMod.astro'
 
-let hitokoto = HITOKOTO_TEXT;
+let hitokoto = HITOKOTO_TEXT
 if (HITOKOTO_ENABLLE) {
   const response = await fetch(
-    "https://v1.hitokoto.cn/?c=i&encode=text&charset=utf-8&max_length=20",
-  );
-  hitokoto = await response.text();
+    'https://v1.hitokoto.cn/?c=i&encode=text&charset=utf-8&max_length=20',
+  )
+  hitokoto = await response.text()
 }
 ---
 
@@ -19,7 +19,7 @@ if (HITOKOTO_ENABLLE) {
     height="80"
     alt={SITE_TITLE}
   />
-  <div class="flex justify-between my-4 items-center">
+  <div class="my-4 flex items-center justify-between">
     <h2 class="!text-sm"><span class="hitokoto">{hitokoto}</span></h2>
     <nav>
       <ul class="flex space-x-2">
@@ -32,7 +32,7 @@ if (HITOKOTO_ENABLLE) {
         <a href="https://space.bilibili.com/4532843" target="_blank">
           <i class="ri-bilibili-line"></i>
         </a>
-        <a href={new URL("rss.xml", Astro.site)} title="rss" target="_blank">
+        <a href={new URL('rss.xml', Astro.site)} title="rss" target="_blank">
           <i class="ri-rss-line"></i>
         </a>
       </ul>
