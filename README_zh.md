@@ -1,6 +1,6 @@
 # Ying - 基于 Astro 的现代博客
 
-一个使用 Astro 框架构建的现代化、高性能、响应式博客。
+一个使用 Astro 框架构建的现代化、高性能、响应式博客。移植于[Halo](https://halo.run/)主题[Ying](https://github.com/MagicBreeze/halo-theme-Ying)。
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 [![License](https://img.shields.io/github/license/ertu426/ying-astro-theme.svg?style=flat-square)](https://github.com/ertu426/ying-astro-theme/blob/main/LICENSE)
@@ -69,14 +69,14 @@ pnpm dev
 
 所有命令都在项目根目录下运行：
 
-| 命令                     | 操作说明                                         |
-| :---------------------- | :----------------------------------------------- |
-| `pnpm install`          | 安装依赖                                         |
-| `pnpm dev`              | 启动本地开发服务器，地址为 `localhost:4321`      |
-| `pnpm build`            | 构建生产版本到 `./dist/` 目录                    |
-| `pnpm preview`          | 本地预览生产构建版本                             |
-| `pnpm astro ...`        | 运行 Astro CLI 命令，如 `astro add`, `astro check` |
-| `pnpm astro -- --help`  | 获取 Astro CLI 的帮助信息                        |
+| 命令                   | 操作说明                                           |
+| :--------------------- | :------------------------------------------------- |
+| `pnpm install`         | 安装依赖                                           |
+| `pnpm dev`             | 启动本地开发服务器，地址为 `localhost:4321`        |
+| `pnpm build`           | 构建生产版本到 `./dist/` 目录                      |
+| `pnpm preview`         | 本地预览生产构建版本                               |
+| `pnpm astro ...`       | 运行 Astro CLI 命令，如 `astro add`, `astro check` |
+| `pnpm astro -- --help` | 获取 Astro CLI 的帮助信息                          |
 
 ## 🛠️ 技术栈
 
@@ -114,6 +114,7 @@ description: "文章的简短描述"
 ### 配置
 
 项目配置文件：
+
 - `astro.config.mjs` - Astro 框架配置
 - `tsconfig.json` - TypeScript 配置
 - `uno.config.ts` - UnoCSS 配置

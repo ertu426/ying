@@ -1,0 +1,61 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+
+const posts = await getCollection('blog');
+// 收集所有 tag 并统计出现次数
+const tagMap = new Map<string, number>();
+
+posts.forEach(p => {
+  const tags = p.data.tags ?? [];
+  tags.forEach(t => {
+    const tag = String(t);
+    tagMap.set(tag, (tagMap.get(tag) ?? 0) + 1);
+  });
+});
+
+const tags = Array.from(tagMap.entries())
+  .map(([tag, count]) => ({ tag, count }))
+  .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
+---
+
+<Layout title="标签">
+  <article class="tag-content">
+    <h2 class="item-a">标签</h2>
+    <ul class="mt-5">
+      {
+        tags.map(tag => (
+          <li>
+            <a href={`/tags/${tag.tag}`} class="text-sky-400 dark:text-sky-500 hover:underline">{`${tag.tag} (${tag.count})`}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </article>
+</Layout>
+
+<style is:global>
+:root {
+  --ac-li-bg: #343a401a;
+  --ac-li-tx: #324b64;
+}
+
+:root.dark {
+  --ac-li-bg: #202328;
+  --ac-li-tx: #e0e0e1;
+}
+
+.item-a {
+    font-size: 22px;
+    position: relative;
+}
+
+.item-a::before {
+    position: absolute;
+    content: "#";
+    left: -1rem;
+    color: #2bbc8a;
+    font-weight: 700
+}
+</style>

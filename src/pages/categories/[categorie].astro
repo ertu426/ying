@@ -1,0 +1,90 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const categoriesSet = new Set();
+  posts.forEach(p => {
+    const t = p.data.categorie;
+    categoriesSet.add(String(t));
+  });
+
+  const paths = Array.from(categoriesSet).map(categorie => ({
+    params: { categorie },
+  }));
+
+  return paths;
+}
+
+const { categorie } = Astro.params as { categorie: string };
+
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter(p => (p.data.tags ?? []).includes(categorie))
+  .sort((a, b) => +new Date(b.data.pubDate ?? 0) - +new Date(a.data.pubDate ?? 0));
+---
+
+<Layout title={`分类: ${categorie}`}>
+  <article class="tag-content">
+    <h2 class="item-a">分类: {categorie}</h2>
+    <p class="my-5">
+      共有 {posts.length} 篇文章
+    </p>
+    <ul>
+      {
+        posts.map(post => (
+          <li>
+            <time class="archives-li" datetime={post.data.pubDate.toLocaleDateString()}>
+              {
+                post.data.pubDate.toLocaleDateString('zh-cn', {
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                })
+              }
+            </time>
+            <a href={`/archives/${post.id}`} class="text-sm hover:underline">{post.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </article>
+</Layout>
+
+<style is:global>
+:root {
+  --ac-li-bg: #343a401a;
+  --ac-li-tx: #324b64;
+}
+
+:root.dark {
+  --ac-li-bg: #202328;
+  --ac-li-tx: #e0e0e1;
+}
+
+.item-a {
+    font-size: 22px;
+    position: relative;
+}
+
+.item-a::before {
+    position: absolute;
+    content: "#";
+    left: -1rem;
+    color: #2bbc8a;
+    font-weight: 700
+}
+
+.archives-li {
+    padding: 3px 5px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    background-color: var(--ac-li-bg);
+    color: var(--ac-li-tx);
+    margin-right: 5px;
+}
+</style>

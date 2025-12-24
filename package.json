@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^6.3.10",
@@ -27,7 +29,12 @@
     "ultrahtml": "^1.6.0"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^6.7.3",
+    "@typescript-eslint/parser": "^8.50.1",
+    "@unocss/eslint-plugin": "^66.5.10",
     "@unocss/reset": "^66.5.10",
+    "eslint": "^9.39.2",
+    "eslint-plugin-astro": "^1.5.0",
     "unocss": "^66.5.10"
   }
 }
