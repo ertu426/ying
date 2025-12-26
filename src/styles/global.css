@@ -1,17 +1,10 @@
-@font-face {
-  font-family: "ZouLDFXKAJ";
-  font-display: swap;
-  src:
-    url("/fonts/ZouLDFXKAJ/ZouLDFXKAJ.eot?#iefix") format("embedded-opentype"),
-    url("/fonts/ZouLDFXKAJ/ZouLDFXKAJ.woff2") format("woff2"),
-    url("/fonts/ZouLDFXKAJ/ZouLDFXKAJ.woff") format("woff"),
-    url("/fonts/ZouLDFXKAJ/ZouLDFXKAJ.ttf") format("truetype");
+body {
+    font-family: var(--font-zouldfxkaj);
 }
 
 .page-container {
   background-image: url(/img/texture.png);
   background-repeat: repeat;
-  font-family: "ZouLDFXKAJ", sans-serif;
 }
 
 .post-card {

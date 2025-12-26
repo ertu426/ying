@@ -24,16 +24,16 @@ if (HITOKOTO_ENABLLE) {
     <h2 class="!text-sm"><span class="hitokoto">{hitokoto}</span></h2>
     <nav>
       <ul class="flex space-x-2">
-        <a href="mailto:one@2xat.net" title="E-mail" target="_blank">
+        <a href="mailto:one@2xat.net" title="E-mail" target="_blank" aria-label="发送邮件">
           <i class="ri-mail-line"></i>
         </a>
-        <a href="https://github.com/ertu426" target="_blank">
+        <a href="https://github.com/ertu426" target="_blank" aria-label="GitHub 主页">
           <i class="ri-github-line"></i>
         </a>
-        <a href="https://space.bilibili.com/4532843" target="_blank">
+        <a href="https://space.bilibili.com/4532843" target="_blank" aria-label="Bilibili 主页">
           <i class="ri-bilibili-line"></i>
         </a>
-        <a href={new URL('rss.xml', Astro.site)} title="rss" target="_blank">
+        <a href={new URL('rss.xml', Astro.site)} title="rss" target="_blank" aria-label="RSS 订阅">
           <i class="ri-rss-line"></i>
         </a>
       </ul>

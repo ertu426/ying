@@ -15,6 +15,11 @@ import UnoCSS from 'unocss/astro'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.xiati.cc',
+  base: '/',
+  trailingSlash: 'always',
+  build: {
+    inlineStylesheets: `never`,
+  },
   integrations: [
     mdx(),
     sitemap(),
@@ -23,7 +28,10 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    remarkPlugins: [remarkGfm, remarkBreaks],
+    remarkPlugins: [
+      remarkGfm,
+      remarkBreaks,
+    ],
     rehypePlugins: [
       rehypeSlug,
       rehypeRaw,
@@ -33,5 +41,25 @@ export default defineConfig({
       rehypeAutolinkHeadings,
     ],
     syntaxHighlight: 'prism',
+  },
+  experimental: {
+    fonts: [{
+      name: 'ZouLDFXKAJ',
+      cssVariable: '--font-zouldfxkaj',
+      provider: 'local',
+      variants: [
+        {
+          weight: 400,
+          style: 'normal',
+          src: [
+            // './src/assets/fonts/ZouLDFXKAJ/ZouLDFXKAJ.eot',
+            // './src/assets/fonts/ZouLDFXKAJ/ZouLDFXKAJ.svg',
+            './src/assets/fonts/ZouLDFXKAJ/ZouLDFXKAJ.ttf',
+            './src/assets/fonts/ZouLDFXKAJ/ZouLDFXKAJ.woff',
+            './src/assets/fonts/ZouLDFXKAJ/ZouLDFXKAJ.woff2',
+          ],
+        },
+      ],
+    }],
   },
 })

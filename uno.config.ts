@@ -25,7 +25,7 @@ export default defineConfig({
       'article-box': 'flex grow flex-col justify-between mb-5',
       'article-time': 'text-xs text-zinc-400 mb-0.5',
       'footer':
-        'text-right text-gray-500 text-xs mt-5 pt-5 dark:!border-gray-300/50 border-solid border-t border-gray-100',
+        'text-right text-gray-400 text-xs mt-5 pt-5 dark:!border-gray-300/50 border-solid border-t border-gray-100',
       'footercolor': 'text-black dark:text-white',
     },
   ],

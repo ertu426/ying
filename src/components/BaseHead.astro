@@ -1,5 +1,6 @@
 ---
 import type { ImageMetadata } from 'astro'
+import { Font } from 'astro:assets'
 import FallbackImage from '../assets/logo.png'
 import { SITE_TITLE } from '../consts'
 // Import the global.css file here so that it is included on
@@ -32,13 +33,7 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
-<link
-  rel="preload"
-  href="/fonts/ZouLDFXKAJ/ZouLDFXKAJ.woff"
-  as="font"
-  type="font/woff"
-  crossorigin
-/>
+<Font cssVariable="--font-zouldfxkaj" preload />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
