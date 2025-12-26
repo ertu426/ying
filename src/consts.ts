@@ -7,4 +7,4 @@ export const HITOKOTO_ENABLLE = true;
 export const HITOKOTO_TEXT = "Practice makes perfect.";
 
 export const BEIAN_NUMBER = "津ICP备2022007019号-1";
-export const GONGAN_NUMBER = "京公网安备00000000000000号";
+export const GONGAN_NUMBER = "";
