@@ -16,10 +16,8 @@ import UnoCSS from 'unocss/astro'
 export default defineConfig({
   site: 'https://www.xiati.cc',
   base: '/',
+  output: 'static',
   trailingSlash: 'always',
-  build: {
-    inlineStylesheets: `never`,
-  },
   integrations: [
     mdx(),
     sitemap(),
