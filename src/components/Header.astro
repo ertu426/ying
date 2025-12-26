@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets'
 import { HITOKOTO_ENABLLE, HITOKOTO_TEXT, SITE_TITLE } from '../consts'
 import DarkMod from './DarkMod.astro'
 
@@ -12,7 +13,7 @@ if (HITOKOTO_ENABLLE) {
 ---
 
 <div>
-  <img
+  <Image
     src="/img/author.jpg"
     class="rounded-lg"
     width="80"

@@ -1,10 +1,6 @@
 @font-face {
-  font-family: "HarmonyOS";
-  src: url("/fonts/HarmonyOS/HarmonyOS_Sans_SC_Medium.woff") format("woff");
-}
-
-@font-face {
   font-family: "ZouLDFXKAJ";
+  font-display: swap;
   src:
     url("/fonts/ZouLDFXKAJ/ZouLDFXKAJ.eot?#iefix") format("embedded-opentype"),
     url("/fonts/ZouLDFXKAJ/ZouLDFXKAJ.woff2") format("woff2"),
@@ -15,7 +11,7 @@
 .page-container {
   background-image: url(/img/texture.png);
   background-repeat: repeat;
-  font-family: "ZouLDFXKAJ", "HarmonyOS", sans-serif;
+  font-family: "ZouLDFXKAJ", sans-serif;
 }
 
 .post-card {
