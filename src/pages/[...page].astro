@@ -1,9 +1,9 @@
 ---
+import type { GetStaticPaths, Page } from 'astro'
 import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
-import type { GetStaticPaths, Page } from 'astro'
-import Layout from '../layouts/Layout.astro'
 import FormattedDate from '../components/FormattedDate.astro'
+import Layout from '../layouts/Layout.astro'
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const posts = await getCollection('blog')
@@ -42,13 +42,13 @@ const { page } = Astro.props as { page: Page<Post> }
                 src={post.data.heroImage}
                 alt={post.data.title}
                 sizes="(max-width: 1600px) 100vw, 1600px"
-                layout='constrained'
+                layout="constrained"
                 inferSize
               />
             </div>
             <div class="article-box">
               <FormattedDate date={post.data.pubDate} />
-              <a href={`/archives/${post.id}`} class="hover:underline">
+              <a href={`/archives/${post.id}/`} class="hover:underline">
                 {post.data.title}
               </a>
             </div>
